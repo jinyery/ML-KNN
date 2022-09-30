@@ -14,8 +14,7 @@
 
 
 ## 3. Reference
-[Ml-knn: A Lazy Learning Approach to
-Multi-Label Learning][2]
+[ML-KNN: A lazy learning approach to multi-label learning][2]
 
 
 [1]: http://mulan.sourceforge.net/datasets-mlc.html
