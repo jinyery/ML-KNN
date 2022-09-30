@@ -6,7 +6,7 @@ if __name__ == '__main__':
 
     warnings.filterwarnings("ignore")
 
-    dataset_path = "../dataset/yeast/"
+    dataset_path = "./dataset/yeast/"
     train_x, train_y, test_x, test_y = common.load_data(dataset_path + "train_x.csv", dataset_path + "train_y.csv",
                                                         dataset_path + "test_x.csv", dataset_path + "test_y.csv",
                                                         normalization=True)
