@@ -7,6 +7,7 @@ from sklearn.metrics import average_precision_score
 from sklearn.metrics import coverage_error
 from sklearn.metrics import f1_score
 from sklearn.metrics import hamming_loss
+from sklearn.metrics import label_ranking_average_precision_score
 from sklearn.metrics import label_ranking_loss
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
@@ -119,10 +120,12 @@ def evaluate(y_true, y_pred, verbose=True):
     result["coverage_error"] = coverage_error(y_true, y_pred)
     result["label_ranking_loss"] = label_ranking_loss(y_true, y_pred)
     result["average_precision_score"] = average_precision_score(y_true, y_pred)
+    result["label_ranking_average_precision_score"] = label_ranking_average_precision_score(y_true, y_pred)
     if verbose:
         print("hamming_loss:", result["hamming_loss"])
         print("zero_one_loss:", result["zero_one_loss"])
         print("coverage_error:", result["coverage_error"])
         print("label_ranking_loss:", result["label_ranking_loss"])
         print("average_precision_score:", result["average_precision_score"])
+        print("label_ranking_average_precision_score:", result["label_ranking_average_precision_score"])
     return result
