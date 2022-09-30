@@ -2,8 +2,6 @@ import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from tqdm import tqdm
 
-import common
-
 
 class MLKNN:
     def __init__(self, n_neighbors=10, smoothing_param=1):
@@ -41,8 +39,8 @@ class MLKNN:
             self_misses_sum = np.sum(self_misses)
             self.posterior_probs_hits[label_idx] = (self.smoothing_param + self_hits) / (
                     self.smoothing_param * (self.n_neighbors + 1) + self_hits_sum)
-            self.posterior_probs_misses[label_idx] = (self.smoothing_param + self_misses) / (self.smoothing_param * (
-                    self.n_neighbors + 1) + self_misses_sum)
+            self.posterior_probs_misses[label_idx] = (self.smoothing_param + self_misses) / (
+                        self.smoothing_param * (self.n_neighbors + 1) + self_misses_sum)
 
     def train(self, train_x, train_y):
         self.train_x = train_x
@@ -77,20 +75,3 @@ class MLKNN:
         dists_idx = MLKNN.knn(data[target_idx], data)
         aim_idx = np.where(dists_idx == target_idx)[0][0]
         return np.delete(dists_idx, aim_idx)[:n_neighbors]
-
-
-if __name__ == '__main__':
-    import warnings
-
-    warnings.filterwarnings("ignore")
-
-    dataset_path = "./dataset/yeast/"
-    train_x, train_y, test_x, test_y = common.load_data(dataset_path + "train_x.csv", dataset_path + "train_y.csv",
-                                                        dataset_path + "test_x.csv", dataset_path + "test_y.csv",
-                                                        normalization=True)
-    clf = MLKNN()
-    clf.train(train_x, train_y)
-    # clf = common.load_pkl("./clf.pkl")
-    predictions = clf.predict(test_x)
-    common.evaluate(test_y, predictions)
-    # common.save_pkl("./clf.pkl", clf)
